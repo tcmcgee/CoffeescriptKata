@@ -1,0 +1,23 @@
+input[type="text"] {
+    width: 190px;
+    border-radius:25px;
+    padding-left:5px;
+    padding-right:5px;
+
+}
+
+.example {
+	font-size:75%;
+}
+
+.submit {
+	width:175px;
+	height:100px;
+	border-radius:25px;
+}
+
+.results{
+	
+
+}
+
