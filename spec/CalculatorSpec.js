@@ -52,4 +52,8 @@ describe("Calculator", function() {
     it("should be able to calculate 1000 / 10 + 5 with whitespace", function() {
   		expect(calculator.calculate("1000 / 10 + 5")).toEqual(105);
   	});
+
+    it("should be follow the order of operations", function() {
+  		expect(calculator.calculate("10 - 2 + 1")).toEqual(9);
+  	});
 });

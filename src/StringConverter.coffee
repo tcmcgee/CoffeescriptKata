@@ -12,7 +12,10 @@ root.calculate = (equation) ->
 
 
 root.set_results_html = (number) ->
-	$(".results").text(number)
+	try
+		$(".results").text(number)
+	catch e
+		console.log("NO JQUERY FOR TESTS: " + e)
 
 root.pemdas = (equation) ->
 	equation = "~" + equation + "~"
