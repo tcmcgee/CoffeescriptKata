@@ -56,4 +56,8 @@ describe("Calculator", function() {
     it("should be follow the order of operations", function() {
   		expect(calculator.calculate("10 - 2 + 1")).toEqual(9);
   	});
+
+    it("should be able to use carrot (^) as power", function() {
+  		expect(calculator.calculate("10 ^ 2")).toEqual(100);
+  	});
 });
