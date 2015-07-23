@@ -2,11 +2,13 @@ root = exports ? this
 
 root.evalu = () ->  
 	equation = $(".equation").val()
+	equation = equation.replace /ans/, $(".results").text()
+	console.log(equation)
 	calculate(equation)
 
 root.ans = () ->
 	results = $(".results").text()
-	$(".equation").val(results)
+	$(".equation").val('ans')
 
 root.calculate = (equation) ->
 	while (root.hasNext(equation))
@@ -69,7 +71,6 @@ root.getnext = (op, equation, index) ->
 	before = root.before(equation,index) + 1
 	after = root.after(equation,index)
 	next = equation.substring(before,after)
-	console.log(next)
 	return next
 
 root.hasNext = (equation) ->
