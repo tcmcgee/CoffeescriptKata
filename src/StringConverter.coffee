@@ -4,6 +4,10 @@ root.evalu = () ->
 	equation = $(".equation").val()
 	calculate(equation)
 
+root.ans = () ->
+	results = $(".results").text()
+	$(".equation").val(results)
+
 root.calculate = (equation) ->
 	while (root.hasNext(equation))
 		equation = root.pemdas(equation)
