@@ -3,7 +3,6 @@ root = exports ? this
 root.evalu = () ->  
 	equation = $(".equation").val()
 	equation = equation.replace /ans/, $(".results").text()
-	console.log(equation)
 	calculate(equation)
 
 root.ans = () ->
