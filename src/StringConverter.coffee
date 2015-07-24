@@ -2,7 +2,7 @@ root = exports ? this
 
 root.evalu = () ->  
 	equation = $(".equation").val()
-	equation = equation.replace /ans/, $(".results").text()
+	equation = equation.replace /ans/g, $(".results").text()
 	calculate(equation)
 
 root.ans = () ->
