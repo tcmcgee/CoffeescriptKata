@@ -23,30 +23,30 @@ root.set_results_html = (number) ->
 		console.log("NO JQUERY FOR TESTS: " + e)
 
 root.nextOp = (equation) ->
-	index0 = equation.indexOf('^')
-	index1 = equation.indexOf('*')
-	index2 = equation.indexOf('/')
-	index3 = equation.indexOf('+')
-	index4 = equation.indexOf('-')
-	if (index0 != -1)
+	indexpow = equation.indexOf('^')
+	indexmult = equation.indexOf('*')
+	indexdiv = equation.indexOf('/')
+	indexplus = equation.indexOf('+')
+	indexmin = equation.indexOf('-')
+	if (indexpow != -1)
 		return '^'
-	else if (index1 >= 0 && index2 >= 0)
-		if (index1 > index2 )
+	else if (indexmult >= 0 && indexdiv >= 0)
+		if (indexmult > indexdiv )
 			return '/'
 		else
 			return '*'
-	else if (index1 >= 0)
+	else if (indexmult >= 0)
 		return '*'
-	else if (index2 >= 0)
+	else if (indexdiv >= 0)
 		return '/'
-	else if (index3 >= 0 && index4 >= 0)
-		if (index3 > index4)
+	else if (indexplus >= 0 && indexmin >= 0)
+		if (indexplus > indexmin)
 			return '-'
 		else
 			return '+'
-	else if (index3 >= 0)
+	else if (indexplus >= 0)
 		return '+'
-	else if (index4 >= 0)
+	else if (indexmin >= 0)
 		return '-'
 	else 
 		return -1
