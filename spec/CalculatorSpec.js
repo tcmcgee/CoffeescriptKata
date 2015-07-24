@@ -49,8 +49,8 @@ describe("Calculator", function() {
   		expect(calculator.calculate("1000 / 10 + 5")).toEqual(105);
   	});
 
-    it("should be able to calculate 1000 / 10 + 5 with whitespace", function() {
-  		expect(calculator.calculate("1000 / 10 + 5")).toEqual(105);
+    it("should be able to calculate 1000 / 10 * 10 + 5 with whitespace", function() {
+  		expect(calculator.calculate("1000 / 10 * 10 + 5")).toEqual(1005);
   	});
 
     it("should be follow the order of operations", function() {
@@ -59,5 +59,9 @@ describe("Calculator", function() {
 
     it("should be able to use carrot (^) as power", function() {
   		expect(calculator.calculate("10 ^ 2")).toEqual(100);
+  	});
+
+  	it ("should use ^ with the order of operations", function() {
+  		expect(calculator.calculate("10 ^ 2 + 1")).toEqual(101);
   	});
 });
