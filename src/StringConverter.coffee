@@ -3,11 +3,16 @@ root = exports ? this
 root.evalu = () ->  
 	equation = $(".equation").val()
 	equation = equation.replace /ans/g, $(".results").text()
-	calculate(equation)
+	root.calculate(equation)
 
 root.ans = () ->
 	results = $(".results").text()
 	$(".equation").val('ans')
+
+root.help = () ->
+    myWindow = window.open("", "MsgWindow", "width=500, height=400");
+    myWindow.document.write("<center><h1> Help </h1></center>
+    <p>For now: Try to limit it to one operation per parenthesis, ex: ((3+3)+3) instead of (3+3+3) </p> <p>No Negative Numbers :/</p>");
 
 root.calculate = (equation) ->
 	while (root.hasNext(equation))
@@ -67,6 +72,7 @@ root.pemdas = (equation) ->
 		if (op == ')')
 			parens = true
 			op = root.nextOp(next)
+
 			index = equation.indexOf(op)
 		next_index = equation.indexOf(next)
 
@@ -116,7 +122,10 @@ root.math = (next,op) ->
 	else if (op == '+')
 		return +num1 + +num2
 	else if (op == '-')
-		return num1 - num2
+		if (num1 == 0)
+			return -1 * num2
+		else
+			return num1 - num2
 
 root.closeParen = (equation, index, i = -1) ->
 	if (equation.charAt((index + i)) != '(')
