@@ -63,12 +63,13 @@ root.pemdas = (equation) ->
 	if (op != -1)
 		index = equation.indexOf(op)
 		next = root.getnext(op,equation,index)
-		
+
 		if (op == ')')
 			parens = true
 			op = root.nextOp(next)
 			index = equation.indexOf(op)
 		next_index = equation.indexOf(next)
+		console.log(next_index)
 
 		if (parens == false)
 			equation = equation.substring(0,next_index) + (root.math(next, op)) + equation.substring(next_index + next.length)
