@@ -23,12 +23,15 @@ root.set_results_html = (number) ->
 		console.log("NO JQUERY FOR TESTS: " + e)
 
 root.nextOp = (equation) ->
+	indexperen = equation.indexOf(')')
 	indexpow = equation.indexOf('^')
 	indexmult = equation.indexOf('*')
 	indexdiv = equation.indexOf('/')
 	indexplus = equation.indexOf('+')
 	indexmin = equation.indexOf('-')
-	if (indexpow != -1)
+	if (indexperen != -1)
+		return ')'
+	else if (indexpow != -1)
 		return '^'
 	else if (indexmult >= 0 && indexdiv >= 0)
 		if (indexmult > indexdiv )
@@ -54,22 +57,36 @@ root.nextOp = (equation) ->
 
 			
 root.pemdas = (equation) ->
+	parens = false
 	equation = "~" + equation + "~"
 	op = root.nextOp(equation)
 	if (op != -1)
 		index = equation.indexOf(op)
 		next = root.getnext(op,equation,index)
+		
+		if (op == ')')
+			parens = true
+			op = root.nextOp(next)
+			index = equation.indexOf(op)
 		next_index = equation.indexOf(next)
-		equation = equation.substring(0,next_index) + (root.math(next, op)) + equation.substring(next_index + next.length)
+
+		if (parens == false)
+			equation = equation.substring(0,next_index) + (root.math(next, op)) + equation.substring(next_index + next.length)
+		else
+			equation = equation.substring(0,next_index - 1) + (root.math(next, op)) + equation.substring(next_index + next.length + 1)
 		next = equation.substring(1,equation.length-1)
 		return next
 	else
 		return equation
 
 root.getnext = (op, equation, index) ->
-	before = root.before(equation,index) + 1
-	after = root.after(equation,index)
-	next = equation.substring(before,after)
+	if (op == ')')
+		before = root.closeParen(equation,index) + 1
+		next = equation.substring(before,index)
+	else
+		before = root.before(equation,index) + 1
+		after = root.after(equation,index)
+		next = equation.substring(before,after)
 	return next
 
 root.hasNext = (equation) ->
@@ -100,6 +117,13 @@ root.math = (next,op) ->
 		return +num1 + +num2
 	else if (op == '-')
 		return num1 - num2
+
+root.closeParen = (equation, index, i = -1) ->
+	if (equation.charAt((index + i)) != '(')
+		i = i-1
+		root.closeParen(equation,index,i)
+	else
+		return (index + i)
 
 root.before = (equation, index, i = -1) ->
 	numbers = 

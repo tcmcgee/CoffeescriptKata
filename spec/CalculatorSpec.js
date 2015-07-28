@@ -64,4 +64,12 @@ describe("Calculator", function() {
   	it ("should use ^ with the order of operations", function() {
   		expect(calculator.calculate("10 ^ 2 + 1")).toEqual(101);
   	});
+
+  	it ("should use parenthesis with the order of operations", function() {
+  		expect(calculator.calculate("(2+2)^2")).toEqual(16);
+  	});
+
+  	it ("should use parenthesis with the order of operations", function() {
+  		expect(calculator.calculate("(100 - 49) * 2")).toEqual(102);
+  	});
 });
