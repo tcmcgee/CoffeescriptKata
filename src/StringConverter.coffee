@@ -69,7 +69,6 @@ root.pemdas = (equation) ->
 			op = root.nextOp(next)
 			index = equation.indexOf(op)
 		next_index = equation.indexOf(next)
-		console.log(next_index)
 
 		if (parens == false)
 			equation = equation.substring(0,next_index) + (root.math(next, op)) + equation.substring(next_index + next.length)
